@@ -8,6 +8,7 @@ import by.htp.eduard.dao.NameCardDao;
 import by.htp.eduard.dao.PayDao;
 import by.htp.eduard.dao.PaymentSystemDao;
 import by.htp.eduard.dao.RoleDao;
+import by.htp.eduard.dao.StatusDao;
 import by.htp.eduard.dao.UserDao;
 import by.htp.eduard.dao.mysql.AccountDaoImpl;
 import by.htp.eduard.dao.mysql.AuthenticationDaoImpl;
@@ -17,6 +18,7 @@ import by.htp.eduard.dao.mysql.NameCardDaoImpl;
 import by.htp.eduard.dao.mysql.PayDaoImpl;
 import by.htp.eduard.dao.mysql.PaymentSystemDaoImpl;
 import by.htp.eduard.dao.mysql.RoleDaoImpl;
+import by.htp.eduard.dao.mysql.StatusDaoImpl;
 import by.htp.eduard.dao.mysql.UserDaoImpl;
 
 public class DaoProvider {
@@ -40,6 +42,8 @@ public class DaoProvider {
 	private PayDao payDao = new PayDaoImpl();
 	
 	private AuthenticationDao authenticationDao = new AuthenticationDaoImpl();
+	
+	private StatusDao statusDao = new StatusDaoImpl();
 
 	private DaoProvider() {
 	}
@@ -82,5 +86,9 @@ public class DaoProvider {
 
 	public AuthenticationDao getAuthenticationDao() {
 		return authenticationDao;
+	}
+
+	public StatusDao getStatusDao() {
+		return statusDao;
 	}
 }

@@ -9,6 +9,7 @@ import by.htp.eduard.service.impl.NameCardServiceImpl;
 import by.htp.eduard.service.impl.PayServiceImpl;
 import by.htp.eduard.service.impl.PaymentSystemServiceImpl;
 import by.htp.eduard.service.impl.RoleServiceImpl;
+import by.htp.eduard.service.impl.StatusServiceImpl;
 import by.htp.eduard.service.impl.UserServiceImpl;
 
 public class ServiceProvider {
@@ -17,23 +18,25 @@ private static final ServiceProvider instance = new ServiceProvider();
 	
 	private ServiceProvider() {}
 	
-	private UserService userService = new UserServiceImpl();
+	private UserService userService = null;
 	
-	private PaymentSystemService paymentSystemService = new PaymentSystemServiceImpl();
+	private PaymentSystemService paymentSystemService = null;
 	
-	private NameCardService nameCardService = new NameCardServiceImpl();
+	private NameCardService nameCardService = null;
 	
-	private CurrencyService currencyService = new CurrencyServiceImpl();
+	private CurrencyService currencyService = null;
 
 	private RoleService roleService = null;
 
-	private CardService cardService = new CardServiceImpl();
+	private CardService cardService = null;
 
 	private AccountService accountService = null;
 
-	private PayService payService = new PayServiceImpl();
+	private PayService payService = null;
 	
-	private AuthenticationService authenticationService = new AuthenticationServiceImpl();
+	private AuthenticationService authenticationService = null;
+	
+	private StatusService statusService = null;
 	
 	private EntityDtoConverter entityDtoConverter = null;
 	
@@ -42,18 +45,34 @@ private static final ServiceProvider instance = new ServiceProvider();
 	}
 
 	public UserService getUserService() {
+		if(userService == null) {
+			userService = new UserServiceImpl();
+		}
+		
 		return userService;
 	}
 
 	public PaymentSystemService getPaymentSystemService() {
+		if(paymentSystemService == null) {
+			paymentSystemService = new PaymentSystemServiceImpl();
+		}
+		
 		return paymentSystemService;
 	}
 
 	public NameCardService getNameCardService() {
+		if(nameCardService == null) {
+			nameCardService = new NameCardServiceImpl();
+		}
+		
 		return nameCardService;
 	}
 
 	public CurrencyService getCurrencyService() {
+		if(currencyService == null) {
+			currencyService = new CurrencyServiceImpl();
+		}
+		
 		return currencyService;
 	}
 
@@ -66,6 +85,10 @@ private static final ServiceProvider instance = new ServiceProvider();
 	}
 
 	public CardService getCardService() {
+		if(cardService == null) {
+			cardService = new CardServiceImpl();
+		}
+		
 		return cardService;
 	}
 
@@ -78,11 +101,27 @@ private static final ServiceProvider instance = new ServiceProvider();
 	}
 
 	public PayService getPayService() {
+		if(payService == null) {
+			payService = new PayServiceImpl();
+		}
+		
 		return payService;
 	}
 
 	public AuthenticationService getAuthenticationService() {
+		if(authenticationService == null) {
+			authenticationService = new AuthenticationServiceImpl();
+		}
+		
 		return authenticationService;
+	}
+
+	public StatusService getStatusService() {
+		if(statusService == null) {
+			statusService = new StatusServiceImpl();
+		}
+		
+		return statusService;
 	}
 
 	public EntityDtoConverter getEntityDtoConverter() {

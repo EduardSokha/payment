@@ -83,5 +83,13 @@
 		<command-url url="/forget-password" method="forgetPassword"/>
 		<command-url url="/get-password" method="getForgetPassword" />		
 	</command>
+	
+	<command command-class="by.htp.eduard.mvc.commands.StatusCommands">
+		<command-url url="/status-list" method="showAllStatus"/>
+		<command-url url="/add-status" method="addStatus"/>
+		<command-url url="/save-status" method="saveStatus"/>
+		<command-url url="/edit-status" method="editStatus"/>
+		<command-url url="/delete-status" method="deleteStatus"/>
+	</command>
 
 </mvc-commands>

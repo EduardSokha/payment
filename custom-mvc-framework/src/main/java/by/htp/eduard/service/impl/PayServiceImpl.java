@@ -31,7 +31,7 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public Pay savePay(Pay pay) {
+	public Pay savePay(Pay pay) throws NegativeBalanceException {
 		Account account = accountDao.getAccountById(pay.getIdAccount());
 		Double newBalance = account.getBalance() - pay.getPrice();
 		if(newBalance<0) {

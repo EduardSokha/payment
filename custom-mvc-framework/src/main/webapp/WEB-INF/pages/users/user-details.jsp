@@ -99,7 +99,7 @@
                                                     data-select2-id="1" tabindex="-1" aria-hidden="true">
                                                     
                                                     <c:forEach var="role" items="${allRoles}">
-                                                        <option value="${role.id}" data-select2-id="30">${role.name}</option>
+                                                        <option value="${role.id}" data-select2-id="30">${role.roleName}</option>
                                                     </c:forEach>
                                                     
                                                 </select> 

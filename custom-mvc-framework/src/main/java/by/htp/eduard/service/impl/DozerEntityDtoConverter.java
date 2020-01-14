@@ -3,13 +3,9 @@ package by.htp.eduard.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.CustomConverter;
 import org.dozer.DozerBeanMapper;
 
 import by.htp.eduard.service.EntityDtoConverter;
-import by.htp.eduard.service.converters.AccountStatusIdNameConverter;
-import by.htp.eduard.service.converters.CurrencyIdNameConverter;
-import by.htp.eduard.service.converters.UserIdNameConverter;
 
 public class DozerEntityDtoConverter implements EntityDtoConverter{
 	
@@ -68,17 +64,19 @@ public class DozerEntityDtoConverter implements EntityDtoConverter{
 		
 		mappings.add("dozer/role_maping.xml");
 		mappings.add("dozer/account_mapping.xml");
+		mappings.add("dozer/currency_mapping.xml");
+		mappings.add("dozer/card_mapping.xml");
 		
 		return mappings;
 	}
 	
-	private List<CustomConverter> configDozerConverters() {
-		List<CustomConverter> converters = new ArrayList<>();
-		
-		converters.add(new AccountStatusIdNameConverter());
-		converters.add(new CurrencyIdNameConverter());
-		converters.add(new UserIdNameConverter());
-		
-		return converters;
-	}
+//	private List<CustomConverter> configDozerConverters() {
+//		List<CustomConverter> converters = new ArrayList<>();
+//		
+//		converters.add(new AccountStatusIdNameConverter());
+//		converters.add(new CurrencyIdNameConverter());
+//		converters.add(new UserIdNameConverter());
+//		
+//		return converters;
+//	}
 }

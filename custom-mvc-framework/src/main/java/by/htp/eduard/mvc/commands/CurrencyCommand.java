@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import by.htp.eduard.dto.CurrencyDto;
 import by.htp.eduard.entities.Currency;
 import by.htp.eduard.service.CurrencyService;
 import by.htp.eduard.service.ServiceProvider;
@@ -18,7 +19,7 @@ public class CurrencyCommand {
 	}
 	
 	public String showAllCurrencies(HttpServletRequest request) {
-		List<Currency> allCurrencies = currencyService.getAllCurrencies();
+		List<CurrencyDto> allCurrencies = currencyService.getAllCurrencies();
 		request.setAttribute("allCurrencies", allCurrencies);
 		
 		return "/WEB-INF/pages/currencies/currencies-list.jsp";
@@ -32,9 +33,9 @@ public class CurrencyCommand {
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newCurrency");
 		
-		Currency currency = new Currency();
+		CurrencyDto currency = new CurrencyDto();
 		currency.setId(id);
-		currency.setName(name);
+		currency.setCurrencyName(name);
 		
 		currencyService.saveCurrency(currency);
 		
@@ -43,7 +44,7 @@ public class CurrencyCommand {
 
 	public String editCurrency(HttpServletRequest request) {
 		Integer id = HttpUtils.getIntParam("currencyId", request);
-		Currency currency = currencyService.getNameCurrencyById(id);
+		CurrencyDto currency = currencyService.getNameCurrencyById(id);
 		request.setAttribute("currency", currency);
 		return "/WEB-INF/pages/currencies/currency-details.jsp";
 	}

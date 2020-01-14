@@ -87,8 +87,8 @@
                                                     <td class="sorting_1">${card.id}</td>
                                                     <td>${card.date}</td>
                                                     <td>${card.idAccount}</td>
-                                                    <td>${card.idPaymentSystem}</td>
-                                                    <td>${card.idTradeNameCard}</td>
+                                                    <td>${card.namePaymentSystem}</td>
+                                                    <td>${card.tradeNameCard}</td>
                                                     
                                                     <td>
                                                         

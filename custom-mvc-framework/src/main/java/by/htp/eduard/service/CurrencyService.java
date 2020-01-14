@@ -2,11 +2,11 @@ package by.htp.eduard.service;
 
 import java.util.List;
 
-import by.htp.eduard.entities.Currency;
+import by.htp.eduard.dto.CurrencyDto;
 
 public interface CurrencyService {
-	List<Currency> getAllCurrencies();
-	Currency getNameCurrencyById(Integer id);
-	Currency saveCurrency(Currency currency);
+	List<CurrencyDto> getAllCurrencies();
+	CurrencyDto getNameCurrencyById(Integer id);
+	CurrencyDto saveCurrency(CurrencyDto currencyDto);
 	void deleteCurrency(Integer id);
 }

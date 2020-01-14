@@ -2,23 +2,23 @@ package by.htp.eduard.service.converters;
 
 import org.dozer.DozerConverter;
 
-import by.htp.eduard.dao.StatusDao;
+import by.htp.eduard.dao.NameCardDao;
 import by.htp.eduard.dao.mysql.provider.DaoProvider;
-import by.htp.eduard.entities.Status;
+import by.htp.eduard.entities.NameCard;
 
-public class AccountStatusIdNameConverter extends DozerConverter<Integer, String> {
+public class TradeNameCardIdNameConverter extends DozerConverter<Integer, String>{
 
-	private final StatusDao statusDao;
+	private final NameCardDao cameCardDao;
 	
-	public AccountStatusIdNameConverter() {
+	public TradeNameCardIdNameConverter() {
 		super(Integer.class, String.class);
-		statusDao = DaoProvider.getInstance().getStatusDao();
+		cameCardDao = DaoProvider.getInstance().getNameCardDao();
 	}
 
 	@Override
 	public String convertTo(Integer source, String destination) {
-		Status status = statusDao.getNameStatusById(source);
-		return status.getName();
+		NameCard nameCard = cameCardDao.getNameCardById(source);
+		return nameCard.getName();
 	}
 
 	@Override

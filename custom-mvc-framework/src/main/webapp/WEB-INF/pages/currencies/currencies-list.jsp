@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Blank Page</title>
+<title>Currencies</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -77,7 +77,7 @@
                                             <c:forEach var="currency" items="${allCurrencies}">
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">${currency.id}</td>
-                                                    <td>${currency.name}</td>
+                                                    <td>${currency.currencyName}</td>
                                                     <td>
                                                         <c:url value="edit-currency" var="editUrl">
                                                             <c:param name="currencyId" value="${currency.id}" />

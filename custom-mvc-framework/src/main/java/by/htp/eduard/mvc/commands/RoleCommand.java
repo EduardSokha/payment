@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.eduard.dto.RoleDto;
-import by.htp.eduard.entities.Role;
 import by.htp.eduard.service.RoleService;
 import by.htp.eduard.service.ServiceProvider;
 import by.htp.eduard.utils.HttpUtils;
@@ -19,7 +18,7 @@ public class RoleCommand {
 	}
 	
 	public String showAllRoles(HttpServletRequest request) {
-		List<Role> allRoles = roleService.getAllRoles();
+		List<RoleDto> allRoles = roleService.getAllRoles();
 		request.setAttribute("allRoles", allRoles);
 		
 		return "/WEB-INF/pages/roles/roles-list.jsp";
@@ -33,9 +32,9 @@ public class RoleCommand {
 		Integer id = HttpUtils.getIntParam("id", request);
 		String name = request.getParameter("newRole");
 		
-		Role role = new Role();
+		RoleDto role = new RoleDto();
 		role.setId(id);
-		role.setName(name);
+		role.setRoleName(name);
 		
 		roleService.saveRole(role);
 		

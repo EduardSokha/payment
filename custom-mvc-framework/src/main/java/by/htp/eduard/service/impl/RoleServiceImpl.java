@@ -22,8 +22,10 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public List<Role> getAllRoles() {
-		return roleDao.getAllRoles();
+	public List<RoleDto> getAllRoles() {
+		List<Role> allRoles = roleDao.getAllRoles();
+		List<RoleDto> allRolesDto = converter.convertToDtoList(allRoles, RoleDto.class);
+		return allRolesDto;
 	}
 
 	@Override
@@ -34,12 +36,18 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public Role saveRole(Role role) {
+	public RoleDto saveRole(RoleDto roleDto) {
+		Role role = converter.convertToEntity(roleDto, Role.class);
+		
 		if(role.getId() == null) {
-			return roleDao.saveRole(role);
+			role = roleDao.saveRole(role);
+			RoleDto dto = converter.convertToDto(role, RoleDto.class);
+			return dto;
 		}
 		
-		return roleDao.updateNameRole(role);
+		role = roleDao.updateNameRole(role);
+		RoleDto dto = converter.convertToDto(role, RoleDto.class);
+		return dto;
 	}
 
 	@Override

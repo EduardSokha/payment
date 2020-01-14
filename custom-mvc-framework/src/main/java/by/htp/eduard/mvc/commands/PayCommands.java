@@ -5,23 +5,22 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.eduard.entities.Account;
-import by.htp.eduard.entities.Card;
+import by.htp.eduard.dto.CardDto;
 import by.htp.eduard.entities.Pay;
-import by.htp.eduard.service.AccountService;
 import by.htp.eduard.service.CardService;
 import by.htp.eduard.service.PayService;
 import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.service.exceptions.NegativeBalanceException;
 import by.htp.eduard.utils.HttpUtils;
 
 public class PayCommands {
 	
 	private final PayService payService;
 	private final CardService cardService;	
-	private final AccountService accountService;
+//	private final AccountService accountService;
 
 	public PayCommands() {
-		accountService = ServiceProvider.getInstance().getAccountService();
+//		accountService = ServiceProvider.getInstance().getAccountService();
 		payService = ServiceProvider.getInstance().getPayService();
 		cardService = ServiceProvider.getInstance().getCardService();
 	}
@@ -35,8 +34,11 @@ public class PayCommands {
 	
 	public String createPay(HttpServletRequest request) {
 		Integer id = HttpUtils.getIntParam("cardId", request);
-		Card card = cardService.getCardById(id);
+		
+		CardDto card = cardService.getCardById(id);
+		
 		request.setAttribute("card", card);
+		
 		return "/WEB-INF/pages/pay/pay-details.jsp";
 	}
 	
@@ -53,7 +55,12 @@ public class PayCommands {
 		pay.setIdAccount(idAccount);
 		pay.setDescription(description);
 		
-		payService.savePay(pay);
+		try {
+			payService.savePay(pay);
+		} catch (NegativeBalanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "redirect:payments-list";
 //		cards-list

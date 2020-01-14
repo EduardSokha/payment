@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.eduard.entities.Role;
+import by.htp.eduard.dto.RoleDto;
 import by.htp.eduard.entities.User;
 import by.htp.eduard.service.RoleService;
 import by.htp.eduard.service.ServiceProvider;
@@ -30,7 +30,7 @@ public class UserCommand {
 	}
 
 	public String addUser(HttpServletRequest request) {
-		List<Role> allRoles = roleService.getAllRoles();
+		List<RoleDto> allRoles = roleService.getAllRoles();
 		request.setAttribute("allRoles", allRoles);
 		return "/WEB-INF/pages/users/user-details.jsp";
 	}
@@ -73,7 +73,7 @@ public class UserCommand {
 	}
 	
 	public String editUser(HttpServletRequest request) {
-		List<Role> allRoles = roleService.getAllRoles();
+		List<RoleDto> allRoles = roleService.getAllRoles();
 		request.setAttribute("allRoles", allRoles);
 		Integer id = HttpUtils.getIntParam("userId", request);
 		User user = userService.getUserById(id);

@@ -6,9 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.eduard.dto.AccountDto;
+import by.htp.eduard.dto.CardDto;
+import by.htp.eduard.dto.CurrencyDto;
 import by.htp.eduard.entities.Account;
 import by.htp.eduard.entities.Card;
-import by.htp.eduard.entities.Currency;
 import by.htp.eduard.entities.NameCard;
 import by.htp.eduard.entities.PaymentSystem;
 import by.htp.eduard.entities.User;
@@ -40,7 +41,7 @@ public class CardCommands {
 	}
 	
 	public String showAllCards(HttpServletRequest request) {
-		List<Card> cards = cardService.getAllCards();
+		List<CardDto> cards = cardService.getAllCards();
 		request.setAttribute("allCards", cards);
 		
 		return "/WEB-INF/pages/cards/cards-list.jsp";
@@ -65,7 +66,7 @@ public class CardCommands {
 		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
 		Integer idTradeNameCard = HttpUtils.getIntParam("idTradeNameCard", request);
 		
-		Card card = new Card();
+		CardDto card = new CardDto();
 		card.setDate(new Date());	
 		card.setIdAccount(idAccount);
 		card.setIdPaymentSystem(idPaymentSystem);
@@ -79,7 +80,7 @@ public class CardCommands {
 	public String editCard(HttpServletRequest request) {
 		Integer id = HttpUtils.getIntParam("cardId", request);
 		
-		Card card = new Card();		
+		CardDto card = new CardDto();		
 		card.setId(id);
 		cardService.saveCard(card);
 		return "redirect:cards-list";
@@ -101,7 +102,7 @@ public class CardCommands {
 		List<AccountDto> allAccounts = accountService.getAllAccounts();
 		request.setAttribute("allAccounts", allAccounts);
 		
-		List<Currency> allCurrencies = currencyService.getAllCurrencies();
+		List<CurrencyDto> allCurrencies = currencyService.getAllCurrencies();
 		request.setAttribute("allCurrencies", allCurrencies);
 		
 		List<User> allUsers = userService.getAllUsers();
@@ -111,11 +112,11 @@ public class CardCommands {
 	}
 	
 	public String saveCardAndAccount(HttpServletRequest request) {
-//		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
+		Integer idAccount = HttpUtils.getIntParam("idAccount", request);
 		Integer idPaymentSystem = HttpUtils.getIntParam("idPaymentSystem", request);
 		Integer idTradeNameCard = HttpUtils.getIntParam("idTradeNameCard", request);
 		
-//		Integer id = HttpUtils.getIntParam("id", request);
+		Integer id = HttpUtils.getIntParam("id", request);
 		Double balance = HttpUtils.getDoubleParam("balance", request);
 		Integer idUser = HttpUtils.getIntParam("idUser", request);
 		Integer idStatus = HttpUtils.getIntParam("idStatus", request);
@@ -123,12 +124,12 @@ public class CardCommands {
 		
 		Card card = new Card();
 		card.setDate(new Date());	
-//		card.setIdAccount(idAccount);
+		card.setIdAccount(idAccount);
 		card.setIdPaymentSystem(idPaymentSystem);
 		card.setIdTradeNameCard(idTradeNameCard);
 		
 		Account account = new Account();
-//		account.setId(id);
+		account.setId(id);
 		account.setBalance(balance);
 		account.setDate(new Date());
 		account.setIdUser(idUser);

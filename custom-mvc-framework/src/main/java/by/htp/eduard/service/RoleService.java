@@ -3,13 +3,12 @@ package by.htp.eduard.service;
 import java.util.List;
 
 import by.htp.eduard.dto.RoleDto;
-import by.htp.eduard.entities.Role;
 
 public interface RoleService {
 
-	List<Role> getAllRoles();
+	List<RoleDto> getAllRoles();
 	RoleDto getNameRoleById(Integer id);
-	Role saveRole(Role role);
+	RoleDto saveRole(RoleDto roleDto);
 	void deleteRole(Integer id);
 
 }

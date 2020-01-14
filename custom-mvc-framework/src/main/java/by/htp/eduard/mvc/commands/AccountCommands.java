@@ -6,15 +6,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.eduard.dto.AccountDto;
-import by.htp.eduard.entities.Currency;
+import by.htp.eduard.dto.CurrencyDto;
 import by.htp.eduard.entities.NameCard;
 import by.htp.eduard.entities.PaymentSystem;
+import by.htp.eduard.entities.Status;
 import by.htp.eduard.entities.User;
 import by.htp.eduard.service.AccountService;
 import by.htp.eduard.service.CurrencyService;
 import by.htp.eduard.service.NameCardService;
 import by.htp.eduard.service.PaymentSystemService;
 import by.htp.eduard.service.ServiceProvider;
+import by.htp.eduard.service.StatusService;
 import by.htp.eduard.service.UserService;
 import by.htp.eduard.utils.HttpUtils;
 
@@ -25,6 +27,7 @@ public class AccountCommands {
 	private final NameCardService nameCardService;
 	private final PaymentSystemService paymentSystemService;
 	private final UserService userService;
+	private final StatusService statusService;
 
 	public AccountCommands() {
 		accountService = ServiceProvider.getInstance().getAccountService();
@@ -32,6 +35,7 @@ public class AccountCommands {
 		nameCardService = ServiceProvider.getInstance().getNameCardService();
 		paymentSystemService = ServiceProvider.getInstance().getPaymentSystemService();
 		userService = ServiceProvider.getInstance().getUserService();
+		statusService = ServiceProvider.getInstance().getStatusService();
 	}
 	
 	public String showAllAccounts(HttpServletRequest request) {
@@ -42,7 +46,7 @@ public class AccountCommands {
 	}
 	
 	public String addAccount(HttpServletRequest request) {	
-		List<Currency> allCurrencies = currencyService.getAllCurrencies();
+		List<CurrencyDto> allCurrencies = currencyService.getAllCurrencies();
 		request.setAttribute("allCurrencies", allCurrencies);
 		
 		List<User> allUsers = userService.getAllUsers();
@@ -76,6 +80,10 @@ public class AccountCommands {
 		Integer id = HttpUtils.getIntParam("accountId", request);
 		AccountDto account = accountService.getAccountById(id);
 		request.setAttribute("account", account);
+		
+		List<Status> allStatus = statusService.getAllStatus();
+		request.setAttribute("allStatus", allStatus);
+		
 		return "/WEB-INF/pages/accounts/accounts-edit.jsp";
 	}
 	
